@@ -28,7 +28,7 @@ Deve ser instalado o conector do Python, para o BD MySQL, conforme abaixo:
 pip install mysql-connector-python
 ```
 
-## db.properties
+## <a href="https://github.com/Trevisolli/python-mysql-aws/blob/master/db.properties">db.properties</a>
 
 Arquivo que especifica as características/propriedades para conexão em um BD MySQL. 
 A versão da base de dados utilizada neste projeto, foi a 8.0.23, disponível para download <a href="https://downloads.mysql.com/archives/get/p/25/file/mysql-installer-community-8.0.30.0.msi">aqui</a>.
@@ -40,7 +40,7 @@ Abaixo, segue a visualização do arquivo <b>db.properties</b> onde, o lado esqu
 
 Lembrando que, este arquivo (<b>db.properties</b>) é essencial para que este projeto funcione corretamente, portanto, deve ser configurado exatamente de acordo com as configurações de instalação do BD e, deve estar no diretório do projeto, onde se encontra o arquivo <b>conectar_mysql.py</b>.
 
-## create_mysql_structure.sql
+## <a href="https://github.com/Trevisolli/python-mysql-aws/blob/master/create_mysql_structure.sql">create_mysql_structure.sql</a>
 
 Arquivo que especifica as estruturas de dados que devem ser criadas no BD MySQL. 
 
@@ -53,7 +53,7 @@ Deve ser aplicado este script no seu banco de dados, para criação da tabela <b
 
 Este script também contém os comandos de carga de dados (inserts) que foram realizados que, por motivos didáticos foram realizados diretamente no BD e não via Python.
 
-## conectar_mysql.py
+## <a href="https://github.com/Trevisolli/python-mysql-aws/blob/master/conectar_mysql.py">conectar_mysql.py</a>
 
 Este é o principal arquivo do projeto, que contém os métodos e, a chamada principal.
 Resumidamente, ele executa as seguintes operações:
@@ -69,4 +69,19 @@ Resumidamente, ele executa as seguintes operações:
   </ol>
   <li>Caso não existam registros nessas condições (exported="N"), apenas exibe uma mensagem ao usuário. </li>
 </ol>
-### <a href="https://github.com/Trevisolli/desafio_first/blob/master/exercicio_01.py"> Exercício 01 </a>
+
+Imagem da execução do projeto:
+
+<p align="center">
+  <img width="450" src="https://github.com/Trevisolli/python-mysql-aws/blob/master/images/execution_results.PNG"/>  
+</p>
+
+Produto final, sendo o arquivo criado:
+
+<p align="center">
+  <img width="250" src="https://github.com/Trevisolli/python-mysql-aws/blob/master/images/employees_list.PNG"/>  
+</p>
+
+<b>Nota Importante:</b> Sempre que se adicionar um novo registro no Banco de Dados MySQL, o arquivo conectar_mysql.py pode ser executado novamente, pois o mesmo verifica as diferenças no BD que ainda não foram para o arquivo texto, e o atualiza.
+
+
