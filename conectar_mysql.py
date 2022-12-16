@@ -1,3 +1,14 @@
+#----------------------------------------------------------------------------
+# Created By  : Trevisolli
+# Created Date: 16/12/2022
+# version     : '1.0'
+# ---------------------------------------------------------------------------
+""" Read records from a MySQL database and write the result in a text file, 
+    using the Python language. 
+"""
+# ---------------------------------------------------------------------------
+# Imports 
+# ---------------------------------------------------------------------------
 import mysql.connector as mysql 
 import os 
 
@@ -159,8 +170,10 @@ def list_employees(employee_id=None):
     except Exception as err:
         print(f"Error when trying to display Employees list. Error: {err}.")
         exit(1)
-    
-      
+
+# ---------------------------------------------------------------------------
+# Execution  
+# ---------------------------------------------------------------------------     
 if __name__ == "__main__":
    db_version()   
    l = list_employees()
