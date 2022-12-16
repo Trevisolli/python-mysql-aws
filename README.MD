@@ -51,6 +51,8 @@ Abaixo, segue a visualização do arquivo <b>create_mysql_structure.sql</b>:
 
 Deve ser aplicado este script no seu banco de dados, para criação da tabela <b>employees</b>, que conterá os nossos cadastros.
 
+Neste caso, seguindo a instalação sugerida no <a href="https://downloads.mysql.com/archives/get/p/25/file/mysql-installer-community-8.0.30.0.msi">Link acima</a>, foi marcada a opção de MySQL Workbench, que utilizei como IDE para questões de tarefas de banco de dados.  
+
 Este script também contém os comandos de carga de dados (inserts) que foram realizados que, por motivos didáticos foram realizados diretamente no BD e não via Python.
 
 ## <a href="https://github.com/Trevisolli/python-mysql-aws/blob/master/conectar_mysql.py">conectar_mysql.py</a>
