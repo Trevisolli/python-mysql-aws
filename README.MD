@@ -84,4 +84,4 @@ Produto final, sendo o arquivo criado:
 
 <b>Nota Importante:</b> Sempre que se adicionar um novo registro no Banco de Dados MySQL, o arquivo conectar_mysql.py pode ser executado novamente, pois o mesmo verifica as diferenças no BD que ainda não foram para o arquivo texto, e o atualiza.
 
-
+<b>Nota Importante2:</b> A segunda fase deste projeto consiste, em recuperar este arquivo gerado no sistema Operacional e, enviá-lo à um Bucket S3 na AWS (Em breve!).
