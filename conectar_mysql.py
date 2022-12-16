@@ -127,7 +127,10 @@ def db_version():
 
   
 def list_employees(employee_id=None):
-
+    """
+    Returns the list of employees, registered in the employees table, 
+    in the MySQL database
+    """
     try:
         return_list = list()
         separator = '-'*100
