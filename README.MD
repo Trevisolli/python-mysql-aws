@@ -86,4 +86,40 @@ Produto final, sendo o arquivo criado:
 
 <b>Nota Importante:</b> Sempre que se adicionar um novo registro no Banco de Dados MySQL, o arquivo conectar_mysql.py pode ser executado novamente, pois o mesmo verifica as diferenças no BD que ainda não foram para o arquivo texto, e o atualiza.
 
-<b>Nota Importante2:</b> A segunda fase deste projeto consiste, em recuperar este arquivo gerado no sistema Operacional e, enviá-lo à um Bucket S3 na AWS (Em breve!).
+## <a href="https://github.com/Trevisolli/python-mysql-aws/blob/master/pys3.py">pys3.py</a>
+
+Este arquivo funciona como um módulo, que provê funções de manipulação de Buckets e Arquivos no Amazon S3 e o mesmo é importado no arquivo <a href="https://github.com/Trevisolli/python-mysql-aws/blob/master/conectar_mysql.py">conectar_mysql.py</a>.
+
+Após a geração do arquivo employees_list.txt, o mesmo é copiado para um bucket S3 da Amazon.
+
+Resumidamente, ele executa as seguintes operações na AWS (S3):
+<ol>
+  <li>Leitura de variáveis de ambiente, para proteção de dados sensíveis da AWS</li>
+  <li>Criação de Bucket</li>
+  <li>Upload de Arquivos</li>
+  <li>Download de Arquivos</li>
+  <li>Deleção de Arquivos</li>  
+  <li>Cópia de Arquivos entre Buckets</li>  
+  <li>Listagem de Arquivos do Bucket</li>   
+</ol>
+  
+Imagens da execução do projeto, com todo o fluxo:  
+
+Conectar no mysql e gerar arquivo local:
+
+<p align="center">
+  <img width="250" src="https://github.com/Trevisolli/python-mysql-aws/blob/master/images/execution_results_2.PNG"/>  
+</p>
+
+Copiar arquivo para a AWS S3.
+
+<p align="center">
+  <img width="250" src="https://github.com/Trevisolli/python-mysql-aws/blob/master/images/bucket_001.PNG"/>  
+</p>
+
+<p align="center">
+  <img width="250" src="https://github.com/Trevisolli/python-mysql-aws/blob/master/images/employees_list_inside_bucket.PNG"/>  
+</p>
+
+
+
