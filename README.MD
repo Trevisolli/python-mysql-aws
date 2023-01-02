@@ -28,6 +28,13 @@ Deve ser instalado o conector do Python, para o BD MySQL, conforme abaixo:
 pip install mysql-connector-python
 ```
 
+Para se instalar as demais bibliotecas, como <b>python-dotenv</b>, <b>boto3</b>  etc:
+```
+pip install python-dotenv
+pip install awscli
+pip install boto3
+```
+
 ## <a href="https://github.com/Trevisolli/python-mysql-aws/blob/master/db.properties">db.properties</a>
 
 Arquivo que especifica as características/propriedades para conexão em um BD MySQL. 
