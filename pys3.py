@@ -12,21 +12,9 @@ PRI_BUCKET_NAME = 'trevisolli-bucket-001'
 TRANSIENT_BUCKET_NAME = 'trevisolli-bucket-03'
 F1 = 'employees_list.txt'
 F2 = 'hello2.txt'
-F2 = 'hello3.txt'
+F3 = 'hello3.txt'
 DIR = 'E:\\Cursos\\Pense em Python\\'
 DOWN_DIR = 'C:\\temp\\downdir\\'
-
-def main():
-    """entry point"""
-    access, secret = get_vars()
-    s3 = boto3.resource('s3', aws_access_key_id=access, aws_secret_access_key=secret)
-    #create_bucket(PRI_BUCKET_NAME, s3)
-    list_obj = list_objects(PRI_BUCKET_NAME, s3)
-    if F1 not in list_obj:
-        upload_file(PRI_BUCKET_NAME, DIR, F1, s3 )   
-    print_objects_list(PRI_BUCKET_NAME, list_obj) 
-
-
 
 # Load file values 
 def get_vars():
@@ -38,9 +26,11 @@ def get_vars():
     except Exception as e:
         print("Error loading environment variables: ", e)
 
-def create_bucket(name, s3):
+def create_bucket(name, s3, secure=False):
     try:
-        bucket = s3.create_bucket(Bucket=name)   
+        s3.create_bucket(Bucket=name)   
+        if secure:
+            prevent_public_access(name, s3)
         print(f"Bucket [{TRANSIENT_BUCKET_NAME}] created.")     
     except ClientError as ce:
         print("error creating bucket:", ce)
@@ -101,6 +91,53 @@ def copy_file(source_bucket, destination_bucket, source_key, destination_key, s3
     except Exception as ce:
         print("error listing files from bucket:", ce)        
 
+
+def prevent_public_access(bucket, s3):
+    """Buckets and objects not public"""
+    try:
+        s3.meta.client.put_public_access_block(Bucket=bucket,
+            PublicAccessBlockConfiguration={
+                'BlockPublicAcls':True,
+                'IgnorePublicAcls':True,
+                'BlockPulicPolicy':True,
+                'RestrictPublicBuckets':True
+            })
+    except Exception as ce:
+        print("error applying policies:", ce) 
+
+def generate_download_link(bucket, key, expiration_seconds, s3):
+    try:
+        s3.meta.client.generate_presigned_url('get_object', Params={
+            'Bucket' : bucket,
+            'Key' : key 
+        }, ExpiresIn=expiration_seconds)
+        print(response)
+    except Exception as ce:
+        print("error creating download file link:", ce) 
+
+
+def delete_bucket(bucket, s3):
+    try:
+        s3.Bucket(bucket).delete()
+    except Exception as ce:
+        print("error deleting a bucket:", ce)  
+
+
+def main():
+    """entry point"""
+    access, secret = get_vars()
+    s3 = boto3.resource('s3', aws_access_key_id=access, aws_secret_access_key=secret)
+    create_bucket(PRI_BUCKET_NAME, s3, True)
+    list_obj = list_objects(PRI_BUCKET_NAME, s3)
+    
+    if F1 not in list_obj:
+        upload_file(PRI_BUCKET_NAME, DIR, F1, s3 )   
+    
+    generate_download_link(PRI_BUCKET_NAME, F1, 30, s3)
+    print_objects_list(PRI_BUCKET_NAME, list_obj) 
+    delete_bucket(PRI_BUCKET_NAME,s3)
+
+      
 
 if __name__ == "__main__":
     main()

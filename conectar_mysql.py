@@ -9,8 +9,12 @@
 # ---------------------------------------------------------------------------
 # Imports 
 # ---------------------------------------------------------------------------
+import boto3
 import mysql.connector as mysql 
 import os 
+from pys3 import create_bucket, delete_bucket, generate_download_link, get_vars, list_objects
+from pys3 import prevent_public_access, print_objects_list, upload_file
+from pys3 import DIR, F1, PRI_BUCKET_NAME
 
 column_separator = ";"
 
@@ -181,3 +185,11 @@ if __name__ == "__main__":
    db_version()   
    l = list_employees()
    write_file(l)
+   """aws entry point"""
+   access, secret = get_vars()
+   s3 = boto3.resource('s3', aws_access_key_id=access, aws_secret_access_key=secret)
+   create_bucket(PRI_BUCKET_NAME, s3, True)
+   list_obj = list_objects(PRI_BUCKET_NAME, s3)
+   if F1 not in list_obj:
+       upload_file(PRI_BUCKET_NAME, DIR, F1, s3 )   
+   print_objects_list(PRI_BUCKET_NAME, list_obj) 
