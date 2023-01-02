@@ -94,7 +94,7 @@ Após a geração do arquivo employees_list.txt, o mesmo é copiado para um buck
 
 Resumidamente, ele executa as seguintes operações na AWS (S3):
 <ol>
-  <li>Leitura de variáveis de ambiente, para proteção de dados sensíveis da AWS</li>
+  <li>Leitura de variáveis de ambiente<b>*</b>, para proteção de dados sensíveis da AWS</li>
   <li>Criação de Bucket</li>
   <li>Upload de Arquivos</li>
   <li>Download de Arquivos</li>
@@ -102,6 +102,8 @@ Resumidamente, ele executa as seguintes operações na AWS (S3):
   <li>Cópia de Arquivos entre Buckets</li>  
   <li>Listagem de Arquivos do Bucket</li>   
 </ol>
+
+<b>* Nota importante sobre Variáveis de Ambiente: </b> Neste projeto foi utilizada a biblioteca <b><a href="https://pypi.org/project/python-dotenv/">python-dotenv</a></b> para se trabalhar com arquivos de configuração de variáveis de ambiente, sem que os valores sensíveis fiquem expostos no seu código. Um exemplo bem prático de como importar e utilizar esta biblioteca, está no vídeo à seguir, do <a href="https://www.youtube.com/watch?v=Jp5inslWuKg">Téo Me Why</a>.
   
 Imagens da execução do projeto, com todo o fluxo:  
 
